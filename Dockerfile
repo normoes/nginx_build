@@ -48,4 +48,4 @@ COPY nginx.conf /etc/nginx/
 RUN mkdir /var/cache/nginx
 RUN mkdir -p /usr/share//nginx/html && touch /usr/share/nginx/html/index.html && echo "Hi." > /usr/share/nginx/html/index.html
 
-CMD []
+CMD ["nginx", "-g", "daemon off;"]
