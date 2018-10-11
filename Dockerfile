@@ -38,7 +38,7 @@ RUN apt-get update -qq && apt-get install -y wget \
     && tar xvzf GeoLite2-City.tar.gz -C GeoLite2-City --strip 1 \
     && mkdir /usr/local/share/GeoIP \
     && mv GeoLite2-City/GeoLite2-City.mmdb /usr/local/share/GeoIP/ \
-    && mv GeoLite2-Country/GeoLite2-Country.mmdb /usr/local/share/GeoIP/ \
+    && mv GeoLite2-Country/GeoLite2-Country.mmdb /usr/local/share/GeoIP/
 
 RUN adduser --system --group --no-create-home --shell /bin/false nginx 
 COPY nginx.conf /etc/nginx/
