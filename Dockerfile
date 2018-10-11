@@ -33,12 +33,15 @@ RUN cd nginx \
 RUN apt-get update -qq && apt-get install -y wget \
     && wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz \
     && wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz \
+    && wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
     && mkdir GeoLite2-Country GeoLite2-City \
     && tar xvfz GeoLite2-Country.tar.gz -C GeoLite2-Country --strip 1 \
     && tar xvzf GeoLite2-City.tar.gz -C GeoLite2-City --strip 1 \
+    && gunzip GeoLiteCity.dat.gz \
     && mkdir /usr/local/share/GeoIP \
     && mv GeoLite2-City/GeoLite2-City.mmdb /usr/local/share/GeoIP/ \
-    && mv GeoLite2-Country/GeoLite2-Country.mmdb /usr/local/share/GeoIP/ 
+    && mv GeoLite2-Country/GeoLite2-Country.mmdb /usr/local/share/GeoIP/ \
+    && mv GeoLiteCity.dat /usr/local/share/GeoIP/
 
 RUN adduser --system --group --no-create-home --shell /bin/false nginx 
 COPY nginx.conf /etc/nginx/
